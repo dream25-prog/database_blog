@@ -24,6 +24,11 @@ hr {
     margin: 100px auto;
     width: 3%;
 }
+h2{
+    font-size: 600%;
+    text-align: center;
+    color: #FFFFFF;
+}
 h3{
     font-size: 400%;
     text-align: center;
