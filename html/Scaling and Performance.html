@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Scaling and Performance</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- CSS StyleSheet Link -->
+    <link rel="stylesheet" href="/HA/css/styles.css">
+
+
+</head>
+
+<body>
+    
+   
+        <h3>Scaling and Performance: Ensuring Efficiency and Reliability</h3>
+        <br>
+        <p>Scalability refers to the capability of a system to handle a growing amount of work, or its potential to perform more total work in the same elapsed time when processing power is expanded to accommodate growth. A system is said to be scalable if it can increase its workload and throughput when additional resources are added.
+            <br>
+          A related aspect of scalability is availability and the ability of the DBMS to undergo administration (e.g. schema changes) and servicing (e.g. upgrades and maintenance) without impacting applications and end user accessibility. A scalable system can be changed to adapt to changing workloads without impacting its accessibility, thereby assuring continuing availability even as modifications are made.
+          <br>
+          Elasticity is the degree to which a system can adapt to workload changes by provisioning and deprovisioning resources in an on-demand manner, such that at each point in time the available resources match the current demand as closely as possible.
+        <br>From a database perspective, elasticity infers a flexible data model and clustering capabilities. The greater the number of changes that can be tolerated, and the ease with which clustering can be managed, the more elastic the DBMS.</p>
+        <div class="main">
+        <h4>Types of Database Scalability</h4>
+                    
+                <ol >
+                    <li><h4>Vertical scaling</h4>
+                        <ul><li>Vertical scaling also known as scaling up, is the process of adding resources, such as memory or more powerful CPUs to an existing server. Removing memory or changing to a less powerful CPU is known as scaling down<li>Adding or replacing resources to a system typically results in performance gains, but realizing such gains often requires reconfiguration and downtime. Furthermore, there are limitations to the amount of additional resources that can be applied to a single system, as well as to the software that uses the system.</li><li>Vertical scaling has been a standard method of scaling for traditional RDBMSs that are architected on a single-server type model. Nevertheless, every piece of hardware has limitations that, when met, cause further vertical scaling to be impossible.</li>
+                        <li> For example, if your system only supports 256 GB of memory, when you need more memory you must migrate to a bigger box, which is a costly and risky procedure requiring database and application downtime.</li>
+                       </ul> 
+                    </li> 
+                     <li><h4>Horizontal scaling</h4>
+                        <ul><li> Horizontal scaling sometimes referred to as scaling out, is the process of adding more hardware to a system. This typically means adding nodes (new servers) to an existing system. Doing the opposite, that is removing hardware, is known as scaling in.
+                            <li>With the cost of hardware declining, it makes more sense to adopt horizontal scaling using low-cost "commodity" systems for tasks that previously required larger computers, such as mainframes. Of course, horizontal scaling can be limited by the capability of software to exploit networked computer resources and other technology constraints. And keep in mind that traditional database servers cannot run on more than a few machines. In such cases, scaling is limited, in that you are scaling to several machines, not to 100x or more. </li>
+                        <li>Horizontal and vertical scaling can be combined, with resources added to existing servers to scale vertically and additional servers added to scale horizontally when required. It is wise to consider the tradeoffs between horizontal and vertical scaling as you consider each approach.</li>
+                        <li>Horizontal scaling results in more computers networked together and that will cause increased management complexity. It can also result in latency between nodes and complicate programming efforts if not properly managed by either the database system or the application. That said, depending on your database system's hardware requirements, you can often buy several commodity boxes for the price of a single, expensive, and often custom-built server that vertical scaling requires.</li></ul> 
+                <li>On the other hand, depending on your requirements, vertical scaling actually can be less costly if you've already invested in the hardware; it typically costs less to reconfigure existing hardware than to procure and configure new hardware. Of course, vertical scaling can lead to over-provisioning which can be quite costly. At any rate, virtualization perhaps can help to alleviate the costs of scaling.</li>
+                    </li>  
+                </ol>
+                <br>
+                <h4>Optimizing database performance</h4>
+                </div>
+                <br>
+                <p>Optimizing database performance is a crucial aspect of managing databases for web developers. A well-optimized database can significantly enhance the overall performance of a website or web application. Here are some key considerations and best practices for optimizing database performance:
+                        
+                <div class="main">
+                   
+                   <ul>
+    
+                            <li><h5>Indexing:</h5>Implement appropriate indexes on the database tables to improve query performance. Indexes allow the database to quickly locate and retrieve the required data, reducing the time taken for query execution. However, it is important to strike a balance between the number of indexes and their impact on data modification operations, as excessive indexing can lead to slower insert, update, and delete operations.</li>
+                            <li><h5>Query optimization:</h5> Optimize the SQL queries used to retrieve or manipulate data in the database. Analyze the execution plans of the queries and identify opportunities for optimization, such as redundant or inefficient operations. Use appropriate join and aggregation techniques, avoid unnecessary sorting or filtering, and leverage database-specific features like query hints or optimizer settings.</li>
+                            <li><h5>Denormalization:</h5>Consider denormalizing database schema in certain scenarios to improve performance. Denormalization involves combining multiple tables or duplicating data to eliminate the need for complex joins or expensive calculations. However, exercise caution when denormalizing as it can introduce data redundancy and may impact data consistency or integrity.</li>
+                            <li><h5>Caching:</h5> Implement caching mechanisms to reduce the load on the database and improve response times. Caching involves storing frequently accessed data in memory or a separate caching layer to serve subsequent requests faster. Use caching strategies such as in-memory caches, content delivery networks (CDNs), or database query result caches depending on the nature of the data and the application requirements.</li>
+                            <li><h5>Connection pooling: </h5>Utilize connection pooling to optimize the usage of database connections. Connection pooling allows multiple client applications to share a pool of pre-established database connections, reducing the overhead of establishing and tearing down connections for each request. This can significantly improve the overall scalability and performance of the application.</li>
+                            <li><h5>Database tuning:</h5> Regularly monitor the performance of the database and tune its configuration settings for optimal performance. Adjust parameters such as memory allocation, disk I/O settings, buffer sizes, or concurrency settings based on the workload and performance requirements of the application. Use database-specific profiling or monitoring tools to identify bottlenecks and optimize resource utilization.</li>
+                            <li><h5>Load balancing and scaling:</h5> Employ load balancing techniques and scale the database infrastructure horizontally or vertically as the application demands grow. Load balancing distributes the database workload across multiple servers or instances, ensuring optimal resource utilization and high availability. Scaling can involve adding more servers, allocating additional resources, or adopting database sharding techniques to partition data across multiple instances.</li>
+                            <li><h5>Regular maintenance and optimization:</h5> Perform routine maintenance tasks such as database backups, index reorganizations, or statistics updates to keep the database in optimal condition. Regularly monitor and analyze the performance metrics of the database to identify any potential issues or performance degradation. Periodically review and optimize database schema, table designs, or data storage strategies to accommodate changing requirements.</li>         
+                        </ul> 
+
+                </div>
+               
+                <div>
+                <p>By following these best practices, you can create a well-designed and robust database that
+                    supports your
+                    web
+                    application's requirements and future growth. Remember to continuously evaluate and adapt your
+                    database
+                    design as your application evolves to ensure optimal performance and data management.</p>
+                </p></div>
+                <br>
+        <div class="video">
+            <iframe width="1050px" height="800px"  src="https://www.youtube.com/embed/wreo-QQVh8Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+       
+    <hr>
+   
+
+
+
+</body>
+</html>
