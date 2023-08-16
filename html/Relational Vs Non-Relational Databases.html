@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Database Design and Modeling</title>
+    <title> Scaling and Performance</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -15,441 +15,85 @@
     <!-- CSS StyleSheet Link -->
     <link rel="stylesheet" href="/HA/css/styles.css">
 
+
 </head>
 
 <body>
     <div class="home">
-        <a  href="/HA/html/home.html" target="_blank"><h5>Back To Home</h5>  </a>
+        <a  href="/HA/html/home.html" target="_blank"> <h5>Back To Home</h5>  </a>
     
    </div>
-   <h2>Relational Vs Non-Relational Databases</h2>
-    
-
-        <h3> Relational Databases: Structured and Powerful</h3>
+   
+        <h3>Scaling and Performance: Ensuring Efficiency and Reliability</h3>
         <br>
-                <p> The relational model is a fundamental concept in database management. It provides a
-                    structured
-                    way to organize and store data in a tabular format. Let's break down the key
-                    components: </p>
-                    <div class="main">
+        <p>Scalability refers to the capability of a system to handle a growing amount of work, or its potential to perform more total work in the same elapsed time when processing power is expanded to accommodate growth. A system is said to be scalable if it can increase its workload and throughput when additional resources are added.
+            <br>
+          A related aspect of scalability is availability and the ability of the DBMS to undergo administration (e.g. schema changes) and servicing (e.g. upgrades and maintenance) without impacting applications and end user accessibility. A scalable system can be changed to adapt to changing workloads without impacting its accessibility, thereby assuring continuing availability even as modifications are made.
+          <br>
+          Elasticity is the degree to which a system can adapt to workload changes by provisioning and deprovisioning resources in an on-demand manner, such that at each point in time the available resources match the current demand as closely as possible.
+        <br>From a database perspective, elasticity infers a flexible data model and clustering capabilities. The greater the number of changes that can be tolerated, and the ease with which clustering can be managed, the more elastic the DBMS.</p>
+        <div class="main">
+        <h4>Types of Database Scalability</h4>
+                    
                 <ol >
-                    <li><h4>Tables:</h4>
-                        <ul><li> A table is a collection of related data entities.</li>
-                        <li>Each table represents a
-                            specific
-                            type of information.</li>
-                        <li>For example, in a retail database, you might have a
-                            "Customers"
-                            table to
-                            store customer information, a "Products" table to store product details, and so
-                            on.</li>
-                        </li>
+                    <li><h4>Vertical scaling</h4>
+                        <ul><li>Vertical scaling also known as scaling up, is the process of adding resources, such as memory or more powerful CPUs to an existing server. Removing memory or changing to a less powerful CPU is known as scaling down<li>Adding or replacing resources to a system typically results in performance gains, but realizing such gains often requires reconfiguration and downtime. Furthermore, there are limitations to the amount of additional resources that can be applied to a single system, as well as to the software that uses the system.</li><li>Vertical scaling has been a standard method of scaling for traditional RDBMSs that are architected on a single-server type model. Nevertheless, every piece of hardware has limitations that, when met, cause further vertical scaling to be impossible.</li>
+                        <li> For example, if your system only supports 256 GB of memory, when you need more memory you must migrate to a bigger box, which is a costly and risky procedure requiring database and application downtime.</li>
                        </ul> 
                     </li> 
-                     <li><h4>Rows (Records/Tuples):</h4>
-                        <ul><li>  Rows are individual instances of data stored within a table. </li>
-                        <li> Each
-                            row represents a unique record with its own set of attributes.
-                        </li>
-                        <li> Going back to the
-                            "Customers"
-                            table example, each row could represent a single customer, containing attributes
-                            like name,
-                            address, and contact information.</li>
-                        </ul> 
+                     <li><h4>Horizontal scaling</h4>
+                        <ul><li> Horizontal scaling sometimes referred to as scaling out, is the process of adding more hardware to a system. This typically means adding nodes (new servers) to an existing system. Doing the opposite, that is removing hardware, is known as scaling in.
+                            <li>With the cost of hardware declining, it makes more sense to adopt horizontal scaling using low-cost "commodity" systems for tasks that previously required larger computers, such as mainframes. Of course, horizontal scaling can be limited by the capability of software to exploit networked computer resources and other technology constraints. And keep in mind that traditional database servers cannot run on more than a few machines. In such cases, scaling is limited, in that you are scaling to several machines, not to 100x or more. </li>
+                        <li>Horizontal and vertical scaling can be combined, with resources added to existing servers to scale vertically and additional servers added to scale horizontally when required. It is wise to consider the tradeoffs between horizontal and vertical scaling as you consider each approach.</li>
+                        <li>Horizontal scaling results in more computers networked together and that will cause increased management complexity. It can also result in latency between nodes and complicate programming efforts if not properly managed by either the database system or the application. That said, depending on your database system's hardware requirements, you can often buy several commodity boxes for the price of a single, expensive, and often custom-built server that vertical scaling requires.</li></ul> 
+                <li>On the other hand, depending on your requirements, vertical scaling actually can be less costly if you've already invested in the hardware; it typically costs less to reconfigure existing hardware than to procure and configure new hardware. Of course, vertical scaling can lead to over-provisioning which can be quite costly. At any rate, virtualization perhaps can help to alleviate the costs of scaling.</li>
                     </li>  
-                    <li><h4>Columns (Fields/Attributes):</h4>
-                        <ul><li> Columns define the specific pieces of information that make
-                            up a table.</li>
-                        <li> Each column corresponds to a single attribute of the data entity.</li>
-                        <li>In
-                            the
-                            "Customers"
-                            table, columns could include attributes like "CustomerID," "FirstName,"
-                            "LastName,"
-                            "Email," and
-                            more.</li>
-                        </ul> 
-                    </li>
-                    <li><h4>Key-Value Stores:</h4>
-                        <ul><li>Key-value stores are a simple form of NoSQL databases where data is stored as pairs of keys
-                            and
-                            values.</li>
-                        <li> These databases are highly scalable and used for scenarios that require fast data
-                            retrieval
-                            by key, such as caching, session management, and user preferences..</li>
-                        <li> edis and Apache
-                            Cassandra can be
-                            used as key-value stores, although Cassandra also provides other advanced features.</li></ul> 
-                    </li>
-                    <li><h4>Document Databases:</h4>
-                        <ul><li> Document databases store data in flexible, semi-structured formats like JSON or XML.</li>
-                        <li>They
-                            are
-                            designed to handle hierarchical data structures and are suitable for applications with
-                            variable or
-                            evolving schemas.</li>
-                        <li>   Document databases allow for fast and efficient querying, making them
-                            popular for
-                            content management systems, e-commerce platforms, and blogging platforms.</li>
-                        <li>MongoDB and
-                            CouchDB are
-                            examples of document databases.</li></ul> 
-                    </li>
-                    <li><h4>Columnar Databases:</h4>
-                        <ul><li>Columnar databases organize data by columns rather than rows, resulting in improved storage
-                            and
-                            retrieval efficiency for analytical workloads. </li>
-                        <li>These databases are optimized for
-                            aggregations and
-                            analytics, making them ideal for data warehousing and business intelligence applications.</li>
-                        <li> Popular
-                            columnar databases include Apache HBase, Amazon Redshift, and Google BigQuery.</li></ul> 
-                    </li>
-                    
-                    </li>
-             
                 </ol>
                 <br>
-                </div>
-
-              
-                <div class="main">
-                    <ol type="i"><li><h4>Mastering SQL: Essential queries for data manipulation</h4><br>
-                        SQL (Structured Query Language) is used to interact with relational databases. It
-                            allows you to
-                            perform various operations on the data:
-                      
-                    <ul>
-                        <li><h5>SELECT:</h5> Used to retrieve data from one or more tables. You can specify the
-                            columns you
-                            want to retrieve and add conditions to filter the results.</li>
-                        <li><h5>INSERT:</h5> Adds new records to a table, providing values for each column in the new
-                            record.</li>
-                        <li><h5>UPDATE: </h5>Modifies existing records by changing values in specific columns based
-                            on certain
-                            conditions.</li>
-                        <li><h5>DELETE:</h5> Removes records from a table based on specified conditions.</li>
-                        <li><h5>JOIN:</h5> Combines data from multiple tables based on common columns to create a
-                            single result
-                            set.</li>
-                        <li><h5>GROUP BY: </h5>Groups rows based on the values in one or more columns, often used
-                            with
-                            aggregate functions like SUM, AVG, COUNT, etc.
-                        </li>
-                        <li><h5>ORDER BY:</h5> Sorts the result set based on specified columns.</li>
-                    </ul></li>
-                <li><h4>Normalization: Designing efficient and maintainable databases</h4>
-<br>Normalization is a database design process that involves breaking down tables into
-smaller,
-related tables to reduce redundancy and improve data integrity. It is typically
-carried out in a
-series of steps, known as normal forms:
-<ul> <li><h5>First Normal Form (1NF): </h5>Eliminate repeating groups and ensure that each column
-    contains
-    only atomic (indivisible) values.</li>
-<li><h5>Second Normal Form (2NF):</h5> Remove partial dependencies by ensuring that non-key
-    attributes
-    depend on the entire primary key.</li>
-<li><h5>Third Normal Form (3NF):</h5> Eliminate transitive dependencies by ensuring that
-    non-key
-    attributes depend only on the primary key.</li>
-<li><h5>Further Normal Forms (BCNF, 4NF, 5NF):</h5> These forms address more complex
-    dependencies and
-    anomalies in data.</li></ul>
-
-                </li></ol>
-            <br> Normalization helps maintain data consistency, reduces the chances of data
-            anomalies, and makes
-            it easier to update, insert, and delete records without causing inconsistencies.</div><div>
-                    <br>
-                    <p>Relational databases are essential for their structured, secure, and efficient way to store,
-                        manage, and retrieve data. They offer a well-defined structure for organizing data, allowing
-                        for easy representation of real-world entities and their relationships. Data integrity is
-                        enforced through constraints, such as primary keys and foreign keys, to prevent data
-                        duplication and inconsistencies. Querying and retrieval capabilities enable efficient data
-                        retrieval based on various conditions, making it easy to extract meaningful insights from
-                        large datasets.</p>
-                    <p>
-
-
-                        Scalability is another key advantage of relational databases, as they can handle both small
-                        and large datasets, making them suitable for a wide range of applications. They can be
-                        scaled vertically or horizontally to accommodate growing data needs. Data security features,
-                        such as user authentication and access control, help protect sensitive information.
-                    </p>
-                    <p>
-                        Data consistency is ensured through ACID properties, ensuring reliable and consistent data
-                        transactions. Flexible data manipulation, such as joins, aggregations, and filtering, is
-                        crucial for generating meaningful reports and analyses. Normalization and maintainability
-                        are encouraged, resulting in well-structured, modular, and maintainable database designs.
-                        Transaction management is supported by relational databases, which treat sequences of SQL
-                        operations as a single unit of work.</p>
-                    <p>
-
-                        Standardization is a key benefit of relational databases, as SQL, the query language used
-                        with them, is widely accepted, making it easier to switch between different database systems
-                        or collaborate with other developers and organizations.</p>
-                    <p>
-
-                        Relational databases have a long history of successful use in various industries,
-                        contributing to their continued relevance and dominance. In summary, relational databases
-                        provide a solid foundation for managing data in a structured, secure, and efficient manner,
-                        making them essential for various applications, from small business databases to large-scale
-                        enterprise systems.</p><br>
-
-                 
+                <h4>Optimizing database performance</h4>
                 </div>
                 <br>
-               
-                    <h3>Non-Relational Databases: The Future of Data Management</h3>
-                  
-                    <p>Relational databases, while powerful, may encounter challenges in certain scenarios.
-                        NoSQL
-                        databases emerged as an alternative to address these challenges and offer more
-                        flexibility
-                        in handling various types of data and workloads:</p>
-                        <div class="main">
-                            <Ol><li><h4>Scalability**:</h4>
-                            <ul>
-                                <li>>NoSQL databases are designed to scale out horizontally, meaning
-                                    they can
-                                    distribute data across multiple servers or nodes.</li>
-                                    <li>This allows them to handle
-                                        massive
-                                        amounts
-                                        of data and high traffic loads more effectively than traditional relational
-                                        databases.</li>
-                                      
-                            </ul></li>
-                        <li><h4>Schema Flexibility**:</h4><ul>
-                        <li>Unlike relational databases, NoSQL databases often do not
-                            require
-                            a fixed schema.</li>
-                        <li>his flexibility is particularly useful for applications
-                            where data
-                            structures may change frequently or are not well-defined in advance.</li>
-                        </ul></li>
-                        <li><h4>Unstructured and Semi-Structured Data**:</h4><ul>
-                            <li>NoSQL databases can handle diverse data formats, including unstructured and
-                                semi-structured data like JSON, XML, and
-                                key-value
-                                pairs.</li>
-                                <li>NoSQL databases can handle diverse data formats, including unstructured and
-                                    semi-structured data like JSON, XML, and
-                                    key-value
-                                    pairs.</li>
-                                  
-                        </ul></li>
-                    <li>
-                        <h4>Performance**:</h4><ul><li>
-                            NoSQL databases can provide faster read and write operations
-                            compared to
-                            relational databases, especially in scenarios that require low-latency data
-                            access.
-                        </li>
-                    </ul></li></Ol><br>
-                    <h4>Different types of NoSQL databases and their best use cases</h4>
-
-                    </div>
-                   
-               <p>NoSQL databases are categorized into several types, each with its own strengths and
-                ideal
-                use cases:</p>
+                <p>Optimizing database performance is a crucial aspect of managing databases for web developers. A well-optimized database can significantly enhance the overall performance of a website or web application. Here are some key considerations and best practices for optimizing database performance:
+                        
                 <div class="main">
-                <ol>
-                <li>
-                    <h4>Document Stores (e.g., MongoDB)**:</h4><ul><li>
-                        Document databases store data as flexible,
-                                            schema-less documents, often in formats like JSON or BSON.
-                    </li>
-                <li>They are suitable
-                    for
-                    applications with changing or evolving data structures, such as content
-                    management systems,
-                    e-commerce platforms, and real-time analytics.</li>
-               </ul>
-                </li>
-            <li>
-                <h4>Key-Value Stores (e.g., Redis)**:</h4>
-                <ul>
-                    <li>
-                        Key-Value Stores (e.g., Redis)**:
-                                            They excel in scenarios where fast data retrieval and caching are crucial,
-                                            such as session
-                                            management, leaderboard systems, and real-time data synchronization.
-                    </li>
-                    
-                </ul>
-            </li>
-            <li>
-                <h4>Column-Family Stores (e.g., Apache Cassandra)**:</h4><ul>
-                    <li>
-                        Column-family databases store data in
-                                            column families, allowing efficient storage and retrieval of large volumes
-                                            of data with high
-                                            availability and scalability.
-                    </li>
-                    <li>
-                        They are used in applications requiring fast
-                                            writes and reads,
-                                            such as sensor data analysis and time-series databases.
-                    </li>
-
-                </ul>
-            </li>
-            <li><h4>Graph Databases (e.g., Neo4j)**:</h4><ul><li>
-                Graph databases focus on relationships between data
-                                            entities and are used to represent complex networks, hierarchies, and social
-                                            connections.
-            </li>
-        <li>
-            They are applied in applications like social networks, recommendation
-            systems, and fraud
-            detection.  
-        </li></ul></li>
-        <li><h4>Wide-Column Stores (e.g., Apache HBase)**:</h4>
-        <ul>
-            <li>
-                Similar to column-family stores, wide-column
-                                            stores are designed for handling large volumes of sparse data with high
-                                            availability. 
-            </li>
-            <li>
-                They
-                find use in applications involving data warehousing and time-series data
-                analysis. 
-            </li>
-        </ul></li>
-            </Ol>
-            <br>
-            <h4>Hands-on exploration of MongoDB, Redis, Cassandra, and Neo4j</h4>
-        </div>
-       
-           <p> Practical exploration involves getting familiar with the workings of specific NoSQL
-            databases:</p>
-        <div class="main">
-            <ol>
-                <li>
-                    <h4>
-                        MongoDB**:
-                    </h4>
-                  You might learn how to set up a MongoDB instance, create collections
-                            (analogous to tables in relational databases), insert and retrieve documents
-                            using
-                            queries,
-                            and explore features like indexing and aggregation.</li>
-                 
-                <li><h4>Redis**:</h4>
-                    Exploration of Redis could include setting up a Redis server, storing
-                    and
-                    retrieving key-value data, using various data structures (strings, lists,
-                    sets,
-                    etc.), and
-                    utilizing features like pub/sub (publish/subscribe) for real-time messaging.  </li>
-                    <li><h4>assandra**:</h4>
-                        For Cassandra, you might set up a cluster, create keyspaces
-                                            (analogous to
-                                            databases), design tables with appropriate partition keys and clustering
-                                            columns,
-                                            perform
-                                            CRUD operations, and understand its distributed architecture.
-                    </li>
-                    <li><h4>
-                        Neo4j**:
-                    </h4>
-                    >Exploring Neo4j involves creating nodes and relationships, writing
-                    Cypher
-                    queries (Neo4j's query language), and understanding how to traverse and
-                    analyze
-                    complex
-                    graph data </li>
                    
-            </ol>
-        </div>
-
-        <p>
-            In summary, NoSQL databases offer a range of benefits and capabilities that cater to
-            specific data management needs. Understanding the different types of NoSQL databases and
-            gaining hands-on experience with popular options like MongoDB, Redis, Cassandra, and Neo4j
-            can provide insights into their versatility and practical applications in modern data
-            management scenarios.</p>
-            <table class="rel-vs-nonrel">
-                <tr>
-                    <th>Aspect</th>
-                    <th>Relational Databases</th>
-                    <th>Non-Relational Databases (NoSQL)</th>
-                </tr>
-                <tr>
-                    <td>Data Structure</td>
-                    <td>Data is organized into structured tables with predefined columns and data types. Each row
-                        represents a record, and each column represents an attribute.</td>
-                    <td>Data is stored in various formats based on the database type: key-value pairs (Redis),
-                        documents (MongoDB), graphs (Neo4j), columns (Cassandra), etc.</td>
-                </tr>
-                <tr>
-                    <td>Schema</td>
-                    <td>Relational databases have a fixed schema, meaning the structure of tables and relationships
-                        is defined upfront. Changes to the schema often require complex migrations.</td>
-                    <td>Non-relational databases often have a flexible or dynamic schema. New data can be added
-                        without predefining a schema, making them adaptable to changing data needs.</td>
-                </tr>
-                <tr>
-                    <td>Query Language</td>
-                    <td>SQL (Structured Query Language) is used to query and manipulate data. SQL provides a
-                        standardized way to retrieve, insert, update, and delete data.</td>
-                    <td>Non-relational databases use query languages specific to their data model. Examples include
-                        MongoDB's JSON-like queries and graph query languages like Cypher for Neo4j.</td>
-                </tr>
-                <tr>
-                    <td>ACID Transactions</td>
-                    <td>Relational databases offer ACID properties (Atomicity, Consistency, Isolation, Durability)
-                        to ensure data integrity and consistency, even in the face of failures.</td>
-                    <td>Non-relational databases might relax some ACID properties to achieve higher scalability and
-                        availability. They often follow BASE properties (Basically Available, Soft State, Eventually
-                        Consistent).</td>
-                </tr>
-                <tr>
-                    <td>Data Consistency</td>
-                    <td>Relational databases provide strong data consistency, ensuring that data remains accurate
-                        and coherent during transactions.</td>
-                    <td>Non-relational databases might provide eventual consistency, meaning updates to data may
-                        take some time to propagate across all nodes in distributed systems.</td>
-                </tr>
-                <tr>
-                    <td>Use Cases</td>
-                    <td>Well-suited for applications that require complex queries, transactions, and strong data
-                        consistency. Examples include financial systems, CRM software, and inventory management.
-                    </td>
-                    <td>Suitable for applications with rapidly changing data, high scalability needs, and complex
-                        relationships between data points. Examples include social media platforms, real-time
-                        analytics, and IoT applications.</td>
-                </tr>
-                <tr>
-                    <td>Examples</td>
-                    <td>MySQL, PostgreSQL, Oracle</td>
-                    <td>MongoDB, Redis, Cassandra, Neo4j</td>
-                </tr>
-            </table><br>
-
-        <div class="video">
-      
-      
-        <iframe width="1050px" height="800px"src="https://www.youtube.com/embed/E9AgJnsEvG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                   <ul>
     
-    </div>
-    <br>
-    <h3>For More Information Click On</h3>
-    <div class="main">
-        <ul>
-            <li><a href="/HA/html/Types of databases.html"  target="_blank"><h5>Scaling and Performance: Ensuring Efficiency and Reliability</h5></a></li>
-            <li><a href="/HA/html/Relational Vs Non-Relational Databases.html"  target="_blank"><h5>Relational Vs Non-Relational Databases</h5></a></li>
-            <li><a href="/HA/html/Database Design and Modeling.html"  target="_blank"><h5>Database Design and Modeling: Building the Foundation</h5></a></li>
-            <li><a href="/HA/html/Integrating Databases in Web Applications.html" target="_blank"><h5>Integrating Databases in Web Applications</h5></a></li>
-            <li><a href="/HA/html/Scaling and Performance.html" target="_blank" ><h5>Scaling and Performance: Ensuring Efficiency and Reliability</h5></a></li>
-            <li><a href="/HA/html/Database Security and Maintenance.html"  target=" _blank"><h5>Database Security and Maintenance: Protecting Your Valuable Data</h5></a></li>
-        </ul>
-      </div>  
+                            <li><h5>Indexing:</h5>Implement appropriate indexes on the database tables to improve query performance. Indexes allow the database to quickly locate and retrieve the required data, reducing the time taken for query execution. However, it is important to strike a balance between the number of indexes and their impact on data modification operations, as excessive indexing can lead to slower insert, update, and delete operations.</li>
+                            <li><h5>Query optimization:</h5> Optimize the SQL queries used to retrieve or manipulate data in the database. Analyze the execution plans of the queries and identify opportunities for optimization, such as redundant or inefficient operations. Use appropriate join and aggregation techniques, avoid unnecessary sorting or filtering, and leverage database-specific features like query hints or optimizer settings.</li>
+                            <li><h5>Denormalization:</h5>Consider denormalizing database schema in certain scenarios to improve performance. Denormalization involves combining multiple tables or duplicating data to eliminate the need for complex joins or expensive calculations. However, exercise caution when denormalizing as it can introduce data redundancy and may impact data consistency or integrity.</li>
+                            <li><h5>Caching:</h5> Implement caching mechanisms to reduce the load on the database and improve response times. Caching involves storing frequently accessed data in memory or a separate caching layer to serve subsequent requests faster. Use caching strategies such as in-memory caches, content delivery networks (CDNs), or database query result caches depending on the nature of the data and the application requirements.</li>
+                            <li><h5>Connection pooling: </h5>Utilize connection pooling to optimize the usage of database connections. Connection pooling allows multiple client applications to share a pool of pre-established database connections, reducing the overhead of establishing and tearing down connections for each request. This can significantly improve the overall scalability and performance of the application.</li>
+                            <li><h5>Database tuning:</h5> Regularly monitor the performance of the database and tune its configuration settings for optimal performance. Adjust parameters such as memory allocation, disk I/O settings, buffer sizes, or concurrency settings based on the workload and performance requirements of the application. Use database-specific profiling or monitoring tools to identify bottlenecks and optimize resource utilization.</li>
+                            <li><h5>Load balancing and scaling:</h5> Employ load balancing techniques and scale the database infrastructure horizontally or vertically as the application demands grow. Load balancing distributes the database workload across multiple servers or instances, ensuring optimal resource utilization and high availability. Scaling can involve adding more servers, allocating additional resources, or adopting database sharding techniques to partition data across multiple instances.</li>
+                            <li><h5>Regular maintenance and optimization:</h5> Perform routine maintenance tasks such as database backups, index reorganizations, or statistics updates to keep the database in optimal condition. Regularly monitor and analyze the performance metrics of the database to identify any potential issues or performance degradation. Periodically review and optimize database schema, table designs, or data storage strategies to accommodate changing requirements.</li>         
+                        </ul> 
+
+                </div>
+               
+                <div>
+                <p>By following these best practices, you can create a well-designed and robust database that
+                    supports your
+                    web
+                    application's requirements and future growth. Remember to continuously evaluate and adapt your
+                    database
+                    design as your application evolves to ensure optimal performance and data management.</p>
+                </p></div>
+                <br>
+        <div class="video">
+            <iframe width="1050px" height="800px"  src="https://www.youtube.com/embed/wreo-QQVh8Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <h3>For More Information Click On</h3>
+        <div class="main">
+            <ul>
+                <li><a href="/HA/html/Types of databases.html"  target="_blank"><h5>Scaling and Performance: Ensuring Efficiency and Reliability</h5></a></li>
+                <li><a href="/HA/html/Relational Vs Non-Relational Databases.html"  target="_blank"><h5>Relational Vs Non-Relational Databases</h5></a></li>
+                <li><a href="/HA/html/Database Design and Modeling.html"  target="_blank"><h5>Database Design and Modeling: Building the Foundation</h5></a></li>
+                <li><a href="/HA/html/Integrating Databases in Web Applications.html" target="_blank"><h5>Integrating Databases in Web Applications</h5></a></li>
+                <li><a href="/HA/html/Scaling and Performance.html" target="_blank" ><h5>Scaling and Performance: Ensuring Efficiency and Reliability</h5></a></li>
+                <li><a href="/HA/html/Database Security and Maintenance.html"  target=" _blank"><h5>Database Security and Maintenance: Protecting Your Valuable Data</h5></a></li>
+            </ul>
+          </div>  
     <hr>
    
 
