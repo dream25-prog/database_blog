@@ -56,7 +56,11 @@ img{
      border-style: solid;
      border-color: #363636;
  }
- 
+ .home{
+    text-align: right;
+    font-size: 40px;
+    color: #308D46;
+ }
 
 .main{
    
