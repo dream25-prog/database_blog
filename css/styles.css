@@ -10,8 +10,12 @@ body {
     color: #FFFFFFB3;
     line-height: 1.5;
 }
+h2{
+    font-size: 600%;
+    text-align: center;
+    color: #FFFFFF;
+}
 
-/* blog Heading */
 .heading {
     color: #fff;
     font-family: 'Playfair Display', serif;
@@ -23,11 +27,6 @@ hr {
     border-bottom: none;
     margin: 100px auto;
     width: 3%;
-}
-h2{
-    font-size: 600%;
-    text-align: center;
-    color: #FFFFFF;
 }
 h3{
     font-size: 400%;
@@ -57,6 +56,7 @@ img{
      border-style: solid;
      border-color: #363636;
  }
+ 
 
 .main{
    
@@ -77,17 +77,22 @@ img{
   border-color: #363636;
 }
 
-/* Introduction Section */
 #Intoduction {}
 
 .row {
     vertical-align: middle;
 }
 
-/* Blog Info */
+.blog-img2 {
+    float: right;
+    width: 800px;
+    margin-top: 50px;
+}
 
 .blog-img1 {
     float: right;
+    width: 750px;
+    margin-top: 15px;
 }
 
 
@@ -106,7 +111,7 @@ table.rel-vs-nonrel {
     background-color: #f2f2f2;
 }
 
-/* Summary Section */
+
 #Summary {
     background-color: #B7C4CF;
 }
@@ -114,5 +119,3 @@ h5{
     font-size: 105%;
     color: #308D46;
 }
-
-/* Footer Section */
